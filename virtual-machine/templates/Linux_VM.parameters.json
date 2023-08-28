@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "vmName": {
-      "value": "simpleLinuxVM"
+      "value": "simpleLinuxVM22"
     },
     "adminUsername": {
       "value": "testadmin"
@@ -12,19 +12,19 @@
       "value": "password"
     },
     "ubuntuOSVersion": {
-      "value": "Ubuntu-2204"
+      "value": "Ubuntu-2004"
     },
     "vmSize": {
       "value": "Standard_D2s_v3"
     },
     "virtualNetworkName": {
-      "value": "vNet"
+      "value": "vNet41"
     },
     "subnetName": {
-      "value": "Subnet"
+      "value": "Subnet11"
     },
     "networkSecurityGroupName": {
-      "value": "SecGroupNet"
+      "value": "SecGroupNet41"
     },
     "securityType": {
       "value": "TrustedLaunch"
@@ -35,21 +35,28 @@
     "dataDisks": {
       "value": [
         {
-          "disktype": "StandardSSD_LRS",
           "disksize": 50,
-          "mountpoint": "/appdev1"
-          
-
+          "disktype": "Standard_LRS",
+          "mountpoint": "/appdev40"
         },
         {
-          "disktype": "StandardSSD_LRS",
-          "disksize": 70,
-          "mountpoint": "/appdev70"
-          
-
+          "disksize": 80,
+          "disktype": "Standard_LRS",
+          "mountpoint": "/appdev30"
         }
-
       ]
-    }
+    },
+     "exdataDisks": {
+      "value": [
+        {
+          "diskname" : "simpleLinuxVM41_disk2_a3e512d29bc441e88671fb2bcbe4f53e",
+          "mountpoint" : "/appdev70"
+        },
+        {
+          "diskname" : "simpleLinuxVM41_disk3_68e07e79e78a403984fcb546ee98f575",
+          "mountpoint" : "/appdev90"
+        }
+      ]
+     }
   }
 }

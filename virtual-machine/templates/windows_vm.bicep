@@ -264,7 +264,7 @@ resource vmExtension 'Microsoft.Compute/virtualMachines/extensions@2022-03-01' =
         commandToExecute: 'powershell -ExecutionPolicy Unrestricted -File diskmount.ps1 -exdisk ${driveletter} '
         //script: '<base64-script-to-execute>'
         storageAccountName: 'str1str1'
-        storageAccountKey: 'aqebV4089ZpUN7bpAwsu1NoagWggf0ZZl1lSG3LQNq1tdbBH80tz5d7iOj9ArHW4AyAhGPb+Wifi+ASt1wCigw=='
+        storageAccountKey: 'uc6mhVhkKFcfI2NiMlm45RZb32Y44uXO1x8fxgW+wjGynJ5eZ7li7O/qRunDyMdTolPnilMitqDc+ASthI+KEg=='
         fileUris: [
          managementURL
         ]

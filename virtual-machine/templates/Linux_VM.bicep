@@ -51,6 +51,8 @@ param securityType string = 'TrustedLaunch'
 @description('Data disk for the VM')
 param dataDisks array
 
+param exdataDisks array
+
 var imageReference = {
   'Ubuntu-1804': {
     publisher: 'Canonical'
@@ -72,7 +74,7 @@ var imageReference = {
   }
 }
 
-var managementURL = 'https://str1str1.blob.${environment().suffixes.storage}/disk1/diskmount.sh'
+var managementURL = 'https://str1str1.blob.${environment().suffixes.storage}/test/diskmount.sh'
 
 var publicIPAddressName = '${vmName}PublicIP'
 var networkInterfaceName = '${vmName}NetInt'
@@ -102,6 +104,25 @@ var extensionPublisher = 'Microsoft.Azure.Security.LinuxAttestation'
 var extensionVersion = '1.0'
 var maaTenantName = 'GuestAttestation'
 var maaEndpoint = substring('emptystring', 0, 0)*/
+var newdisk = [for (item,i) in dataDisks : {
+  diskSizeGB: item.disksize
+  lun: int(i+1)
+  createOption: 'Empty'
+  managedDisk: {
+     storageAccountType: item.disktype
+  }
+}]
+
+var attachDisk = [for (item,i) in exdataDisks : {
+  //diskSizeGB: item.disksize
+  lun: int(i+11)
+  createOption: 'attach'
+  managedDisk: {
+     id: resourceId('Microsoft.Compute/disks/' ,item.diskname)
+  }
+}]
+
+
 
 resource networkInterface 'Microsoft.Network/networkInterfaces@2021-05-01' = {
   name: networkInterfaceName
@@ -207,14 +228,7 @@ resource vm 'Microsoft.Compute/virtualMachines@2021-11-01' = {
           storageAccountType: osDiskType
         }
       }
-       dataDisks: [for (item,i) in dataDisks : {
-          diskSizeGB: item.disksize
-          lun: int(i+1)
-          createOption: 'Empty'
-          managedDisk: {
-             storageAccountType: item.disktype
-          }
-       }]
+       dataDisks: concat(newdisk,attachDisk)
        
       imageReference: imageReference[ubuntuOSVersion]
     }
@@ -236,26 +250,31 @@ resource vm 'Microsoft.Compute/virtualMachines@2021-11-01' = {
 }
 
 
-var moumtpt = [for item1 in dataDisks : {   
+var moumtpt1 = [for item1 in dataDisks : {   
+  mountpoint:item1.mountpoint
+
+}]
+var moumtpt2 = [for item1 in exdataDisks : {   
   mountpoint:item1.mountpoint
 
 }]
 
+var mountpt = concat(moumtpt1,moumtpt2)
 
-resource vmExtension 'Microsoft.Compute/virtualMachines/extensions@2022-03-01' = {
- name: 'diskmount'
+
+resource vmExtension 'Microsoft.Compute/virtualMachines/extensions@2023-03-01' = {
+ name: 'disk'
  parent: vm
-location: location
+ location: location
  properties: {
    publisher: 'Microsoft.Azure.Extensions'
    type: 'CustomScript'
    typeHandlerVersion: '2.1'
-  
    protectedSettings:  {
-       commandToExecute: 'bash ./diskmount.sh ${moumtpt}'
+       commandToExecute: 'bash ./diskmount.sh ${mountpt}'
        //script: '<base64-script-to-execute>'
        storageAccountName: 'str1str1'
-       storageAccountKey: 'g0Xi7uUBapy9WZURCtyotGV1kJK9BstgliRoGpBaOX1ztiQbyAqWE88I7E/gSpu6S3pe4w8lk9Nm+AStd38seA=='
+       storageAccountKey: 'k/H9KMuJSbnGEdRgZqubHG+oCW5t9Cxfzo5XVpqCUO7f5ZYXCHYmS2c5Nz9NyMHkpmLV0yRXcGx6+AStBWwMgA=='
        fileUris: [
         managementURL
        ]

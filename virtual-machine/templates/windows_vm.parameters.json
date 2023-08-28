@@ -18,7 +18,7 @@
       "value": "Standard_D2s_v5"
     },
     "vmName": {
-      "value": "simple-vm7"
+      "value": "simple-vm1"
     },
     "securityType": {
       "value": "TrustedLaunch"
@@ -47,10 +47,7 @@
     },
     "exdataDisks": {
       "value": [
-        {
-          "diskname": "simple-vm_disk2_686f7442f2db4a74a606f4d836653662",
-          "driveletter": "G"
-        }
+        
       ]
     }
   }
