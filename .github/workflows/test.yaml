@@ -24,7 +24,7 @@ jobs:
           with:
              inlineScript: |
                write-host "ok"${{env.SUPER_SECRET}}
-               Get-AzResourceGroup
+               #Get-AzResourceGroup
              azPSVersion: "latest"
  
                   
