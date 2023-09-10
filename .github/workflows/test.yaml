@@ -4,8 +4,8 @@ on: [workflow_dispatch]
 permissions:
       id-token: write
       contents: read
-env:
-      SUPER_SECRET: ${{ secrets.key1 }}
+#env:
+ #     SUPER_SECRET
       
 jobs: 
   Windows-latest:
@@ -26,6 +26,6 @@ jobs:
                Get-AzResourceGroup
              azPSVersion: "latest"
       
-        - shell: pwsh
-          run: |
-                  example-command "$env:SUPER_SECRET"
+       # - shell: pwsh
+        #  run: |
+         #         example-command "$env:SUPER_SECRET"
