@@ -4,8 +4,7 @@ on: [workflow_dispatch]
 permissions:
       id-token: write
       contents: read
-env:
-      SUPER_SECRET: ${{ secrets.KEY1 }}
+
       
 jobs: 
   Windows-latest:
@@ -18,6 +17,8 @@ jobs:
             tenant-id: ${{ secrets.AZURE_TENANT_ID }}
             subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
             enable-AzPSSession: true
+          env:
+            SUPER_SECRET: ${{ secrets.KEY1 }}
 
         - name: 'Get resource group with PowerShell action'
           uses: azure/powershell@v1
