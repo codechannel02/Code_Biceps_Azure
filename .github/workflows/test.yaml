@@ -23,7 +23,7 @@ jobs:
           uses: azure/powershell@v1
           with:
              inlineScript: |
-               write-host "$env:SUPER_SECRET"
+               write-host "ok"${{env.SUPER_SECRET}}
                Get-AzResourceGroup
              azPSVersion: "latest"
  
