@@ -40,6 +40,7 @@ resource kv1 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
    properties: {
      attributes: {
        enabled: true
+        
      }
        value: 'india11'
       
