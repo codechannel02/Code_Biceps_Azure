@@ -5,7 +5,7 @@ permissions:
       id-token: write
       contents: read
 env:
-      SUPER_SECRET: ${{ secrets.key1 }}
+      SUPER_SECRET: ${{ secrets.KEY1 }}
       
 jobs: 
   Windows-latest:
