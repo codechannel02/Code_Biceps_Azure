@@ -25,10 +25,9 @@ jobs:
            KEYVAULT: ${{ secrets.KEYVAULT }}
           with:
              inlineScript: |
-               write-host "$env:KEYVAULT"
-               write-host "ok"${{env.SUPER_SECRET}}
-               $secrets = ( ${{ secrets.REPO_J }} | ConvertFrom-Json -AsHashtable )
-               write-host $secrets
+                   foreach ($current_property in ${{ secrets.KEYVAULT }}.PSObject.Properties) {
+                      Write-Host "$($current_property.Name): $($current_property.Value)"
+                        }
              azPSVersion: "latest"
  
                   
