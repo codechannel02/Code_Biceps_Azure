@@ -18,14 +18,14 @@ jobs:
             subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
             enable-AzPSSession: true
           env:
-            SECRETS_CONTEXT: ${{ secrets.KEY2 }}
+            SECRETS_CONTEXT: ${{ secrets.KEY_J }}
 
         - name: 'Get resource group with PowerShell action'
           uses: azure/powershell@v1
           with:
              inlineScript: |
                write-host "ok"${{env.SUPER_SECRET}}
-               $secrets = (${{ secrets.SECRETS_CONTEXT}} | ConvertFrom-Json -AsHashtable )
+               $secrets = ( $env:SECRETS_CONTEXT | ConvertFrom-Json -AsHashtable )
                write-host $secrets
              azPSVersion: "latest"
  
