@@ -25,7 +25,7 @@ jobs:
           with:
              inlineScript: |
                write-host "ok"${{env.SUPER_SECRET}}
-               $secrets = ( $env:SECRETS_CONTEXT | ConvertFrom-Json -AsHashtable )
+               $secrets = ( ${{ secrets.REPO_J }} | ConvertFrom-Json -AsHashtable )
                write-host $secrets
              azPSVersion: "latest"
  
