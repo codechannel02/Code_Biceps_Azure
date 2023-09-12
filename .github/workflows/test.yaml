@@ -18,7 +18,7 @@ jobs:
             subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
             enable-AzPSSession: true
           env:
-            SECRETS_CONTEXT: ${{ secrets.KEY_J }}
+            SECRETS_CONTEXT: ${{ secrets.KEY2 }}
 
         - name: 'Get resource group with PowerShell action'
           uses: azure/powershell@v1
