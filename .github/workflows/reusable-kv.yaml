@@ -60,7 +60,7 @@ jobs:
           with:
             client-id: ${{secrets.clientid}}
             tenant-id: ${{secrets.tenantid}}
-            subscription-id: ${{env.subscriptionid}}
+            subscription-id: ${{secrets.subscriptionid}}
         
         - name: 'checkout'
           uses: actions/checkout@v3
