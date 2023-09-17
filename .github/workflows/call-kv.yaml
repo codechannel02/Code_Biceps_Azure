@@ -1,0 +1,13 @@
+name: 'call kv'
+
+on:
+    workflow_dispatch:
+
+permission:
+    id-token: write
+    contents: read
+
+jobs:
+
+    call-kv-done:
+        uses:

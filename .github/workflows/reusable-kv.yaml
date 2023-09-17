@@ -1,0 +1,86 @@
+name : 'Deploy-vault'
+on:
+  workflow_call:
+    inputs:
+        branchname:
+            description: 'branch to use'
+            required: true
+            type: string
+        parameterfile:
+            description: 'paramete file'
+            required: true
+            type: string
+        env:
+                description: ' Environment'
+                required: true
+                type: string
+        azureregion:
+                    description: 'azure region'
+                    required: true
+                    type: string
+        resourcegroup:
+                        description: 'resource group'
+                        required: true
+                        type: string
+    secrets:
+        subscriptionid:
+            required: true
+        clientid:
+            required: true
+        tenantid:
+            required: true
+    outputs:
+        fqdn:
+            description: 'fqdn'
+            value: ${{jobs.deployment.outputs.keyvaultID}}
+
+permissions:
+    id-token: write
+    contents: read
+env:
+    subscriptionid: ${{ secrets.subscriptionid}}
+    resourcegroup: ${{inputs.resourcegroup}}
+    azureregion: ${{inputs.azureregion}}
+    templatefile: ./reusable
+    parameterfile: ${{inputs.parameterfile}}
+    branchfile: ${{inputs.branchname}}
+jobs:
+    deployment:
+        runs-on: ubuntu-latest
+        environment: ${{ inputs.env}}
+
+        outputs:
+            keyvaultID: ${{steps.arm.outputs.keyvaultId}}
+
+
+        steps:
+        
+        - name: 'login to azure'
+          uses: azure/login@v1
+          with:
+            client-id: ${{secrets.clientid}}
+            tenant-id: ${{secrets.tenantid}}
+            subscription-id: ${{env.subscriptionid}}
+        
+        - name: 'checkout'
+          uses: actions/checkout@v3
+          with:
+            path: caller-repo
+        - name: 'Deploy arm template'
+          id: arm
+          uses: Azure/arm-deploy@v1
+          with:
+            scope: resourcegroup
+            deploymentName: 'Github.Actions-${{github.workflow}}-${{github.run_number}}'
+            resourceGroupName: ${{env.resourcegroup}}
+            region: ${{env.azureregion}}
+            template: ${{env.templatefile}}
+            parameters: ${{env.parameterfile}}
+            subscriptionId: ${{env.subscriptionid}}
+
+        - name: Azure cli script
+          run: |
+            az version
+            az logout
+            az cache purge
+            az account clear

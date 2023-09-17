@@ -5,6 +5,9 @@ permissions:
       id-token: write
       contents: read
 
+#env:
+ #     SUPER_SECRET
+
       
 jobs: 
   Windows-latest:
@@ -25,9 +28,9 @@ jobs:
            KEYVAULT: ${{ secrets.KEYVAULT }}
           with:
              inlineScript: |
+
                    foreach ($current_property in ${{ secrets.KEYVAULT }}.PSObject.Properties) {
                       Write-Host "$($current_property.Name): $($current_property.Value)"
                         }
              azPSVersion: "latest"
  
-                  

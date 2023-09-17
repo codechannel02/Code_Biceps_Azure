@@ -1,0 +1,63 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "subscriptionName": {
+      "value": ""
+    },
+    "imageSubscriptionID": {
+      "value": ""
+    },
+    "adminusername": {
+      "value": ""
+    },
+    "adminpassword": {
+      "value": ""
+    },
+    "vmResourceName": {
+      "value": ""
+    },
+    "image": {
+      "value": ""
+    },
+    "datadisk": {
+      "value": []
+    },
+    "vmVnetRg": {
+      "value": ""
+    },
+    "vmVnet": {
+      "value": ""
+    },
+    "subnet": {
+      "value": ""
+    },
+    "ipallocation": {
+      "value": ""
+    },
+    "vmip": {
+      "value": []
+    },
+    "backuprequired": {
+      "value": false
+    },
+    "djpassword": {
+      "value": ""
+    },
+    "djgroup": {
+      "value": ""
+    },
+    "djstraccount": {
+      "value": ""
+    },
+    "djcont": {
+      "value": ""
+    },
+    "djkey": {
+      "value": ""
+    },
+    "region": {
+      "value": ""
+    }
+  }
+}

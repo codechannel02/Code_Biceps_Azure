@@ -1,0 +1,54 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "publicIpName": {
+      "value": "myPublicIP"
+    },
+    "publicIPAllocationMethod": {
+      "value": "Dynamic"
+    },
+    "publicIpSku": {
+      "value": "Basic"
+    },
+    "OSVersion": {
+      "value": "2022-datacenter-azure-edition"
+    },
+    "vmSize": {
+      "value": "Standard_D2s_v5"
+    },
+    "vmName": {
+      "value": "simple-vm1"
+    },
+    "securityType": {
+      "value": "TrustedLaunch"
+    },
+    "adminUsername": {
+      "value": "testadmin"
+    },
+    "adminPassword": {
+      "value": "P@ssw0rd@123"
+    },
+    "newdataDisks": {
+      "value": [
+        {
+          "disktype": "StandardSSD_LRS",
+          "disksize": 50
+          
+
+        },
+        {
+          "disktype": "StandardSSD_LRS",
+          "disksize": 70
+          
+
+        }
+      ]
+    },
+    "exdataDisks": {
+      "value": [
+        
+      ]
+    }
+  }
+}
