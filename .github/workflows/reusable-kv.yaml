@@ -41,7 +41,7 @@ env:
     subscriptionid: ${{ secrets.subscriptionid}}
     resourcegroup: ${{inputs.resourcegroup}}
     azureregion: ${{inputs.azureregion}}
-    templatefile: ./reusable
+    templatefile: ./callerrepo/keyvault/keyvault.bicep
     parameterfile: ${{inputs.parameterfile}}
     branchfile: ${{inputs.branchname}}
 jobs:
@@ -64,8 +64,11 @@ jobs:
         
         - name: 'checkout'
           uses: actions/checkout@v3
+          
           with:
-            path: caller-repo
+            path: callerrepo
+            token: ${{secrets.TOKEN_ACCESS_REPO}}
+
         - name: 'Deploy arm template'
           id: arm
           uses: Azure/arm-deploy@v1
