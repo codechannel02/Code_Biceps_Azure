@@ -23,9 +23,9 @@ jobs:
           uses: azure/powershell@v1
           with:
              inlineScript: |
-               Get-AzResourceGroup
+               Set-Azcontext -SubscriptionName ${{secrets.AZURE_SUBSCRIPTION_ID}}
+               $key1 = Get-AzKeyVault -VaultName ""
+               $string = '{${{secrets.K}}}'
              azPSVersion: "latest"
-      
-       # - shell: pwsh
-        #  run: |
-         #         example-command "$env:SUPER_SECRET"
+
+        

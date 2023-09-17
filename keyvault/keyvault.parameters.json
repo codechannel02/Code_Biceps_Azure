@@ -4,6 +4,20 @@
   "parameters": {
     "keyvaultName": {
       "value": "key271map1"
+    },
+    "secrets": {
+      "value": [
+          
+          {
+              "key":"server",
+              "value":"india"
+          },
+          {
+              "key":"server1",
+              "value":"india"
+          }
+
+      ]
     }
   }
 }
