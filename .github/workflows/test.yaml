@@ -4,8 +4,10 @@ on: [workflow_dispatch]
 permissions:
       id-token: write
       contents: read
+
 #env:
  #     SUPER_SECRET
+
       
 jobs: 
   Windows-latest:
@@ -18,14 +20,17 @@ jobs:
             tenant-id: ${{ secrets.AZURE_TENANT_ID }}
             subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
             enable-AzPSSession: true
+        
 
         - name: 'Get resource group with PowerShell action'
           uses: azure/powershell@v1
+          env:
+           KEYVAULT: ${{ secrets.KEYVAULT }}
           with:
              inlineScript: |
-               Set-Azcontext -SubscriptionName ${{secrets.AZURE_SUBSCRIPTION_ID}}
-               $key1 = Get-AzKeyVault -VaultName ""
-               $string = '{${{secrets.K}}}'
-             azPSVersion: "latest"
 
-        
+                   foreach ($current_property in ${{ secrets.KEYVAULT }}.PSObject.Properties) {
+                      Write-Host "$($current_property.Name): $($current_property.Value)"
+                        }
+             azPSVersion: "latest"
+ 
