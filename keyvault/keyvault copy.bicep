@@ -6,7 +6,9 @@ param location string = resourceGroup().location
 @description('The name of the Key Vault')
 param keyvaultName string
 
+@description('Secrets')
 
+param secrets array
 
 
 
@@ -36,18 +38,18 @@ resource keyVault 'Microsoft.KeyVault/vaults@2021-10-01' = {
   }
 }
 
-resource kv1 'Microsoft.KeyVault/vaults/secrets@2023-02-01' =  {
-   name: 'ind1'
+resource kv1 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = [for secret in secrets : {
+   name: secret.key
    parent: keyVault
    properties: {
      attributes: {
        enabled: true
         
      }
-       value: 'india11'
+       value: secret.value
       
    }
   
-}
+}]
 
 output keyvaultId string = keyVault.id

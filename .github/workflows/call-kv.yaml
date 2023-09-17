@@ -3,11 +3,22 @@ name: 'call kv'
 on:
     workflow_dispatch:
 
-permission:
+permissions:
     id-token: write
     contents: read
 
 jobs:
 
     call-kv-done:
-        uses:
+        uses: codechannel02/Code_Biceps_Azure/blob/main/.github/workflows/reusable-kv.yaml@main
+        with:
+            branchname: main
+            parameterfile: callerrepo/keyvault/keyvault.parameters.json
+            env: dev
+            azureregion: eastus
+            resourcegroup: aap1
+        secrets:
+            subscriptionid: ${{secrets.AZURE_SUBSCRIPTION_ID}}
+            clientid: ${{secrets.AZURE_CLIENT_ID}}
+            tenantid: ${{secrets.AZURE_TENANT_ID}}
+
