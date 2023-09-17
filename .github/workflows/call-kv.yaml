@@ -10,7 +10,7 @@ permissions:
 jobs:
 
     call-kv-done:
-        uses: codechannel02/Code_Biceps_Azure/blob/main/.github/workflows/reusable-kv.yaml@main
+        uses: codechannel02/Code_Biceps_Azure/.github/workflows/reusable-kv.yaml@main
         with:
             branchname: main
             parameterfile: callerrepo/keyvault/keyvault.parameters.json
