@@ -1,4 +1,4 @@
-name: 'call kv'
+name: 'callkv'
 
 on:
     workflow_dispatch:
