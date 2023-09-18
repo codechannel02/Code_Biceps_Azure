@@ -3,7 +3,21 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "keyvaultName": {
-      "value": "key223rgft"
+      "value": "key991map1"
+    },
+    "secrets": {
+      "value": [
+          
+          {
+              "key":"server",
+              "value":"india"
+          },
+          {
+              "key":"server1",
+              "value":"india"
+          }
+
+      ]
     }
   }
 }
