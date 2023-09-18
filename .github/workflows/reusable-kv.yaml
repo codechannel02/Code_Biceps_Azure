@@ -46,7 +46,7 @@ env:
     branchfile: ${{inputs.branchname}}
 jobs:
     deployment:
-        runs-on: ubuntu-latest
+        runs-on: windows-latest
         environment: ${{ inputs.env}}
 
         outputs:
@@ -61,6 +61,8 @@ jobs:
             client-id: ${{secrets.clientid}}
             tenant-id: ${{secrets.tenantid}}
             subscription-id: ${{secrets.subscriptionid}}
+            enable-AzPSSession: true
+
         
         - name: 'checkout'
           uses: actions/checkout@v3
@@ -80,9 +82,9 @@ jobs:
             parameters: ${{env.parameterfile}}
             subscriptionId: ${{env.subscriptionid}}
 
-        - name: Azure cli script
-          run: |
-            az version
-            az logout
-            az cache purge
-            az account clear
+       ## - name: Azure cli script
+         # run: |
+          #  az version
+           # az logout
+           # az cache purge
+           # az account clear
