@@ -61,6 +61,7 @@ jobs:
             client-id: ${{secrets.clientid}}
             tenant-id: ${{secrets.tenantid}}
             subscription-id: ${{secrets.subscriptionid}}
+
         
         - name: 'checkout'
           uses: actions/checkout@v3
@@ -80,9 +81,9 @@ jobs:
             parameters: ${{env.parameterfile}}
             subscriptionId: ${{env.subscriptionid}}
 
-        - name: Azure cli script
-          run: |
-            az version
-            az logout
-            az cache purge
-            az account clear
+       ## - name: Azure cli script
+         # run: |
+          #  az version
+           # az logout
+           # az cache purge
+           # az account clear
