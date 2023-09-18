@@ -45,7 +45,7 @@ env:
     azureregion: ${{inputs.azureregion}}
     templatefile: ./callerrepo/keyvault/keyvault.bicep
     parameterfile: ${{inputs.parameterfile}}
-        secrets=${{secrets.secrets1}}
+        secrets='[{${{secrets.secrets1}}}]'
     branchfile: ${{inputs.branchname}}
 jobs:
     deployment:
