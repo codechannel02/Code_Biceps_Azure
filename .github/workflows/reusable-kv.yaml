@@ -47,7 +47,7 @@ env:
 jobs:
     deployment:
         runs-on: windows-latest
-        environment: ${{ inputs.env}}
+       # environment: ${{ inputs.env}}
 
         outputs:
             keyvaultID: ${{steps.arm.outputs.keyvaultId}}
