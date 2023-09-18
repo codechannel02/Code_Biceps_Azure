@@ -67,7 +67,6 @@ jobs:
           
           with:
             path: callerrepo
-            token: ${{secrets.TOKEN_ACCESS_REPO}}
 
         - name: 'Deploy arm template'
           id: arm
