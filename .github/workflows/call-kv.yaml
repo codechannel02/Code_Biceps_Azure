@@ -17,9 +17,10 @@ jobs:
             env: dev
             azureregion: eastus
             resourcegroup: aap1
-            secrets: ${{ secrets.SECRETS_KEY_1 }}
+            
         secrets:
             subscriptionid: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
             clientid: ${{ secrets.AZURE_CLIENT_ID }}
             tenantid: ${{ secrets.AZURE_TENANT_ID }}
+            secrets1: ${{ secrets.SECRETS_KEY_1 }}
 

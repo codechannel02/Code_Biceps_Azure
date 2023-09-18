@@ -29,7 +29,7 @@ on:
             required: true
         tenantid:
             required: true
-        secrets:
+        secrets1:
             required: true
     outputs:
         fqdn:
@@ -45,7 +45,7 @@ env:
     azureregion: ${{inputs.azureregion}}
     templatefile: ./callerrepo/keyvault/keyvault.bicep
     parameterfile: ${{inputs.parameterfile}}
-        secrets=${{secrets.secrets}}
+        secrets=${{secrets.secrets1}}
     branchfile: ${{inputs.branchname}}
 jobs:
     deployment:
