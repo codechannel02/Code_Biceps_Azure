@@ -8,9 +8,9 @@ param keyvaultName string
 
 @description('Secrets')
 
-param secrets2 string
+param mar2 string
 
-var base64Object = base64(secrets2)
+var base64Object = base64(mar2)
 var secrets  = base64ToJson(base64Object)
 
 resource keyVault 'Microsoft.KeyVault/vaults@2021-10-01' = {
