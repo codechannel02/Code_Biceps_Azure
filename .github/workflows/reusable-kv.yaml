@@ -29,7 +29,7 @@ on:
             required: true
         tenantid:
             required: true
-        secrets:
+        secrets1:
             required: true
     outputs:
         fqdn:
