@@ -40,14 +40,14 @@ resource keyVault 'Microsoft.KeyVault/vaults@2021-10-01' = {
 }
 
 resource kv1 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = [for secret in secrets : {
-   name: secret.key
+   name: secret.one
    parent: keyVault
    properties: {
      attributes: {
        enabled: true
         
      }
-       value: secret.value
+       value: secret.two
       
    }
   
